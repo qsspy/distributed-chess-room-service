@@ -1,2 +1,5 @@
+chess-command:
+  address: ${CHESS_COMMAND_ADDRESS}
+
 kafka:
   bootstrapAddress: ${KAFKA_BOOTSTRAP_ADDRESS}

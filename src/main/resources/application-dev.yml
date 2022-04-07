@@ -1,2 +1,5 @@
+chess-command:
+  address: "http://localhost:8084"
+
 kafka:
   bootstrapAddress: "localhost:9093"

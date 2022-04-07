@@ -3,11 +3,11 @@ package com.qsspy.roomservice.dao;
 import com.qsspy.roomservice.domain.Room;
 import com.qsspy.roomservice.exception.NoSuchRoomExistsException;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 
 import java.util.*;
 
-@Service
+@Repository
 @Slf4j
 public class InMemoryRoomDao implements RoomDao{
 

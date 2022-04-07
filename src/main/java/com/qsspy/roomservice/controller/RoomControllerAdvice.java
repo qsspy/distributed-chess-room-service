@@ -13,7 +13,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @Slf4j
 public class RoomControllerAdvice extends ResponseEntityExceptionHandler {
 
-    private static final String INTERNAL_ERROR_MESSAGE = "Internal Error occured";
+    private static final String INTERNAL_ERROR_MESSAGE = "Internal Error occured.";
 
     @ExceptionHandler(RoomServiceException.class)
     public Response<BaseErrorResponse> roomServiceErrorResponse(final RoomServiceException exception) {

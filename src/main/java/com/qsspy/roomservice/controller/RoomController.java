@@ -9,6 +9,7 @@ import com.qsspy.roomservice.dto.response.Response;
 import com.qsspy.roomservice.service.RoomService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.annotation.Profile;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
@@ -17,6 +18,7 @@ import java.util.UUID;
 @RequestMapping("api/rooms")
 @Slf4j
 @RequiredArgsConstructor
+@Profile("!test")
 public class RoomController {
 
     private final RoomService roomService;

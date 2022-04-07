@@ -5,6 +5,11 @@ spring:
   application:
     name: room-service
 
+chess-command:
+  address: ~
+  initRoomEndpoint: /api/board
+  deleteRoomEndpoint: /api/board
+
 kafka:
   bootstrapAddress: ~
   partitionsPerTopic: 1

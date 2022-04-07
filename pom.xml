@@ -16,7 +16,6 @@
 	<properties>
 		<java.version>11</java.version>
 		<spock.version>1.2-groovy-2.4</spock.version>
-
 	</properties>
 	<dependencies>
 		<dependency>

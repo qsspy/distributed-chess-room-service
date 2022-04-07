@@ -1,5 +1,6 @@
 package com.qsspy.roomservice.service;
 
+import com.qsspy.roomservice.connector.RestConnector;
 import com.qsspy.roomservice.dao.RoomDao;
 import com.qsspy.roomservice.domain.Room;
 import com.qsspy.roomservice.dto.request.CreateRoomRequest;
@@ -7,6 +8,7 @@ import com.qsspy.roomservice.dto.request.JoinRoomRequest;
 import com.qsspy.roomservice.dto.response.CreateRoomResponse;
 import com.qsspy.roomservice.dto.response.GetRoomsResponse;
 import com.qsspy.roomservice.dto.response.JoinRoomResponse;
+import com.qsspy.roomservice.dto.response.Response;
 import com.qsspy.roomservice.enums.PlayerType;
 import com.qsspy.roomservice.exception.*;
 import com.qsspy.roomservice.mapper.RoomMapper;
@@ -30,6 +32,7 @@ public class RoomServiceImpl implements RoomService {
 
     private final RoomDao roomDao;
     private final MessageBrokerHandler brokerHandler;
+    private final RestConnector<Response> restConnector;
 
     @Override
     public CreateRoomResponse createRoom(final CreateRoomRequest request) {
@@ -39,6 +42,8 @@ public class RoomServiceImpl implements RoomService {
         final Room newRoom = RoomMapper.toDomain(request, roomId, topicId, gameOwnerToken);
         roomDao.createRoom(newRoom);
         brokerHandler.createTopic(topicId);
+        restConnector.initRoom(topicId);
+
         log.info("Room created successfully : {}", newRoom);
         return new CreateRoomResponse(gameOwnerToken);
     }
@@ -102,6 +107,7 @@ public class RoomServiceImpl implements RoomService {
     private void removeRoom(final UUID topicId, final UUID roomId) {
         brokerHandler.deleteTopic(topicId);
         roomDao.deleteRoom(roomId);
-        log.info("Room with id " + roomId + "removed successfully!");
+        restConnector.deleteRoom(topicId);
+        log.info("Room with id " + roomId + " removed successfully!");
     }
 }
