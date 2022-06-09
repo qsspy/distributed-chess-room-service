@@ -24,6 +24,7 @@ public class RoomController {
     private final RoomService roomService;
 
     @PostMapping
+    @CrossOrigin(origins = {"http://localhost:3000", "http://localhost:3001"})
     public Response<CreateRoomResponse> createRoom(@RequestBody final CreateRoomRequest request) {
         log.info("Received create room request : {}", request);
         final CreateRoomResponse response = roomService.createRoom(request);
@@ -31,6 +32,7 @@ public class RoomController {
     }
 
     @GetMapping
+    @CrossOrigin(origins = {"http://localhost:3000", "http://localhost:3001"})
     public Response<GetRoomsResponse> getRoomList() {
         log.info("Received list rooms request.");
         final GetRoomsResponse response = roomService.getRoomList();
@@ -38,6 +40,7 @@ public class RoomController {
     }
 
     @PostMapping("/join")
+    @CrossOrigin(origins = {"http://localhost:3000", "http://localhost:3001"})
     public Response<JoinRoomResponse> joinRoom(@RequestBody final JoinRoomRequest request) {
         log.info("Received join room request : {}", request);
         final JoinRoomResponse response = roomService.joinRoom(request);
@@ -45,6 +48,7 @@ public class RoomController {
     }
 
     @DeleteMapping
+    @CrossOrigin(origins = {"http://localhost:3000", "http://localhost:3001"})
     public Response<Void> deleteRoom(@RequestHeader("Room-Id") final UUID roomId) {
         log.info("Received delete room request for roomId : {}", roomId);
         roomService.deleteRoom(roomId);
