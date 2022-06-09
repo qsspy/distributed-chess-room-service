@@ -45,7 +45,7 @@ public class RoomServiceImpl implements RoomService {
         restConnector.initRoom(topicId);
 
         log.info("Room created successfully : {}", newRoom);
-        return new CreateRoomResponse(gameOwnerToken);
+        return new CreateRoomResponse(gameOwnerToken, newRoom.getId());
     }
 
     @Override

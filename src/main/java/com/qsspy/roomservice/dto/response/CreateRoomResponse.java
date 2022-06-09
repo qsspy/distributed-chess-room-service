@@ -11,4 +11,5 @@ import java.util.UUID;
 @AllArgsConstructor
 public class CreateRoomResponse {
     private UUID roomOwnerToken;
+    private UUID roomId;
 }
